@@ -23,8 +23,7 @@ class IntelligentObject:
             self._symbols = re.sub("[^А-Яа-я]", "", symbols).upper()
         else:
             # [[объект|псевдоним]]
-            obj_name, allias = symbols.split('|')
-            self._symbols = re.sub("[^А-Яа-я]", "", obj_name).upper()
+            self._symbols = re.sub("[^А-Яа-я]", "", symbols.split('|')[0]).upper()
 
         if self._symbols in exception_words_list:
             sys.exit()
