@@ -1,7 +1,7 @@
 import re, sys
 from threading import Thread
 
-from exception_words import exception_words_list
+from exceptions import exception_words_list
 
 
 class IntelligentObject:
