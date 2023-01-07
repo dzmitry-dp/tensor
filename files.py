@@ -14,7 +14,7 @@ class Tensor:
         self.path_to_file: str = path_to_file # путь к файлу по которому создан объект
         self.root: str = path_to_file[len(os.getcwd()):] # относительный путь к файлу
         self._symbols: str = None # все символы, которые записаны в файлк
-        self._rows_list: list[str,] = None # список, где элементом списка являетсяя строка
+        self._rows_list: list[str,] = None # список строк из файла
 
     @property
     def rows_list(self):
