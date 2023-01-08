@@ -24,12 +24,12 @@ class Frame:
     @property
     def essences(self) -> pd.DataFrame:
         if self._essences is None:
-            _essences = self._get_essences_df(self.df)
-            self._essences = self._clear_essences(_essences)
+            _df = self._get_pre_essences_df(self.df)
+            self._essences = self._get_essences_df(_df)
         return self._essences
     
-    def _get_essences_df(self, df):
-        "Собираю одни и те же сущности в одну колонку. Отслеживаю формы одного и того же слова"
+    def _get_pre_essences_df(self, df):
+        "Собираю одни и те же сущности в одну строку. Отслеживаю формы одного и того же слова"
         def _save_one_of_two_obj():
             essensce_pseudonym = ''.join(e for e in essence_2.symbols if e.isalnum())
             if essensce_pseudonym not in d.keys():
@@ -76,11 +76,44 @@ class Frame:
                     # если сущности разные
                     _save_objects()
             i += 1
-        
         return pd.DataFrame(d).fillna(0).T
 
-    def _clear_essences(self, df) -> pd.DataFrame:
-        return df
+    def _get_essences_df(self, df):
+        for column in df.columns:
+        # duplicate_rows_in_df - датафрейм из строк дубликатов в каждой колонее
+            have_duplicate_on_column: pd.DataFrame = df[df[column].duplicated(keep='first') & df[column] != 0].loc[:, (df != 0).any(axis=0)]
+            if have_duplicate_on_column.empty:
+                print(f'{column} без дубликатов')
+                continue
+            else:
+                _essences = self._clear_essences_df(
+                    df=df, 
+                    duplicate_on_column=have_duplicate_on_column,
+                    column=column
+                    )
+        try:
+            return _essences
+        except UnboundLocalError:
+            return df
+        
+    def _clear_essences_df(self, df: pd.DataFrame, duplicate_on_column: pd.DataFrame, column: int | str,) -> pd.DataFrame:
+        "Находим повторяющиеся Интеллектуальные Объекты в одной колонке и совмещаем их в одну сущность"
+        # если есть строки с объектами, которые повторяются в колонке column
+        repeat_objects: pd.Series = duplicate_on_column[column][duplicate_on_column[column] != 0]
+        
+        for obj in repeat_objects:
+            rows_where_repeat_value: pd.DataFrame = df[df[column] == obj]
+            if rows_where_repeat_value.empty:
+                continue
+            
+            new_values_for_essence = pd.Series(list(set(rows_where_repeat_value.stack().values.tolist())))
+            df.loc['/'.join(rows_where_repeat_value.index)] = new_values_for_essence[new_values_for_essence != 0]
+
+            # удаляем то, что уже в другой сущности
+            for idx in rows_where_repeat_value.index:
+                df = df.drop(idx)
+
+        return df.fillna(0)
 
     def __repr__(self) -> str:
         return "Объект содержит таблицы"
