@@ -26,11 +26,12 @@ def get_all_obj(tensors: list) -> dict[str, list[IntelligentObject]]:
                 else:
                     objects_of_words[io.symbols] = [io]
             
-            # разбиваем строку на список слов
+            # разбиваем строку на список слов по пробелам
             symbols_list = row.split(' ')
             # для всех слов в строке
             thread_list = []
             for word_number_in_row, symbols_set in enumerate(symbols_list):
+                # ''.join(e for e in symbols_set if e.isalnum())
                 thread = Thread(target=create_IO, args=[symbols_set, row_number, word_number_in_row], name=f'thread_for_word-{word_number_in_row}')
                 thread.start()
                 thread_list.append(thread)

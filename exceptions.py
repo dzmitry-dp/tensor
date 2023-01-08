@@ -2,7 +2,12 @@ exception_words_list = [
     'ЧТО',
     'КАК',
     'ЗАЧЕМ',
-    'НА'
+    'НА', 
+    'ИЗ',
+    'ТО',
+    'НЕ',
+    'ПРО'
+
 ]
 
 important_objects = [

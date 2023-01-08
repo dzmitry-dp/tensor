@@ -6,7 +6,7 @@ import os
 
 from files import Tensor # объект .md файла
 from folders import Folder # объект каталогов
-from analysis import FramesData # объект таблиц
+from analysis import Frame # объект таблиц
 
 
 def _sort(A: list) -> None:
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     _sort(tensors)
     _sort(folders)
 
-    words = FramesData(tensors) # таблица данных
+    words = Frame(tensors) # таблица данных
 
     print('---')
     print("""
@@ -55,6 +55,7 @@ if __name__ == '__main__':
     folders: list - список объектов, созданных по каталогам
     words: FramesData - объект для анализа полученных объектов
         .df: pd.DataFrame - таблица соответвия набору символов и его объекту
+        .essences: pd.DataFrame - таблица сущностей и их объектов Pyhton
     """)
     print('---')
     
