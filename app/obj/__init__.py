@@ -1,6 +1,6 @@
 from threading import Thread
 
-from obj.intelligent import IntelligentObject
+from app.obj.intelligent import IntelligentObject
 
 def get_all_obj(tensors: list) -> dict[str, list[IntelligentObject]]:
     """

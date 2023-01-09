@@ -1,7 +1,7 @@
 import pandas as pd
 
-from obj import get_all_obj # собрать объекты всех наборов символов, которые буду считать словом
-from obj.intelligent import IntelligentObject
+from app.obj import get_all_obj # собрать объекты всех наборов символов, которые буду считать словом
+from app.obj.intelligent import IntelligentObject
 
 class Frame:
     """.df - таблица где название колонок - это набор символов str. 

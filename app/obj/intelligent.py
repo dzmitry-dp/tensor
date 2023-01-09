@@ -1,6 +1,6 @@
 import re, sys
 
-from exceptions import exception_words_list
+from app.exceptions import exception_words_list
 
 
 class CleanSymbols:

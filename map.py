@@ -4,9 +4,9 @@
 
 import os
 
-from files import Tensor # объект .md файла
-from folders import Folder # объект каталогов
-from analysis import Frame # объект таблиц
+from app.obj.files import Tensor # объект .md файла
+from app.obj.folders import Folder # объект каталогов
+from app.analysis import Frame # объект таблиц
 
 
 def _sort(A: list) -> None:
