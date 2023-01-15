@@ -1,6 +1,6 @@
 # Сценарий [dzmitry-dp/tensor: Establish an essences relationship in a text message](https://github.com/dzmitry-dp/tensor)
 
-![[Pasted image 20230115142356.png]]
+![](https://github.com/dzmitry-dp/tensor/blob/master/TestMessages/Pasted%20image%2020230115142356.png?raw=true)
 
 История понятия сущности начинается с трактатов Аристотеля. 
 
