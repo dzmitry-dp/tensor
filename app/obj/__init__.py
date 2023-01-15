@@ -2,12 +2,11 @@ from threading import Thread
 
 from app.obj.intelligent import IntelligentObject
 
-def get_all_obj(tensors: list) -> dict[str, list[IntelligentObject]]:
-    """
-    Возвращает множество интеллектуальных объектов из всех текстов.
-    Соответствие 'набор_символов': [список_из_объектов]
-    Внутри каждого объекта хранится информация о местах, где этот ИО находится и в каких текстах
-    """
+def get_all_obj(files: list) -> dict[str, list[IntelligentObject]]:
+    print("""
+    Возвращаю множество интеллектуальных объектов из всех текстов.
+    Соответствие 'набор_символов': [список_из_объектов] смотри в таблицах words
+    """)
 
     objects_of_words: dict[str, list[IntelligentObject]] = {} # все объекты которые созданы для набора из русских символов
     
@@ -31,7 +30,7 @@ def get_all_obj(tensors: list) -> dict[str, list[IntelligentObject]]:
             # для всех слов в строке
             thread_list = []
             for word_number_in_row, symbols_set in enumerate(symbols_list):
-                # ''.join(e for e in symbols_set if e.isalnum())
+                # для каждого набора символов, которые разделены пробелом свой поток
                 thread = Thread(target=create_IO, args=[symbols_set, row_number, word_number_in_row], name=f'thread_for_word-{word_number_in_row}')
                 thread.start()
                 thread_list.append(thread)
@@ -39,7 +38,7 @@ def get_all_obj(tensors: list) -> dict[str, list[IntelligentObject]]:
             for t in thread_list:
                 t.join()
 
-        # для каждой строки в файле
+        # для каждой строки в файле свой поток
         thread_list = []
         for row_number, row in enumerate(rows_list):
             thread = Thread(target=check_symbols_in_the_row, args=[row, row_number], name=f'thread_for_row-{row_number}')
@@ -51,7 +50,8 @@ def get_all_obj(tensors: list) -> dict[str, list[IntelligentObject]]:
     
     # для каждого объекта в списке tensors_list
     thread_list = []
-    for idx, tensor in enumerate(tensors):
+    for idx, tensor in enumerate(files):
+        # для каждого файла свой поток
         thread = Thread(target=watch_all_rows, args=[tensor.rows_list, tensor.root], name=f'thread_for_tensor-{idx}')
         thread.start()
         thread_list.append(thread)

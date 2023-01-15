@@ -6,7 +6,7 @@ import os
 
 from app.obj.files import File # объект .md файла
 from app.obj.folders import Folder # объект каталогов
-from app.analysis import Frame # объект таблиц
+from app.analysis import Frames # объект таблиц
 
 
 def _sort(A: list) -> None:
@@ -32,28 +32,28 @@ def get_snapshot_files_and_folders(path=os.getcwd()):
         if '.md' in file_or_catalog:
             file = file_or_catalog
             file_path = path + f'\\{file}'
-            files.append(File(file_path))
+            _files.append(File(file_path))
         elif '.' not in file_or_catalog:
             folder = file_or_catalog
             folder_path = path + f'\\{folder}'
-            folders.append(Folder(folder_path))
+            _folders.append(Folder(folder_path))
             get_snapshot_files_and_folders(folder_path)
 
 if __name__ == '__main__':
-    files: list[File] = [] # все объекты файлов .md
-    folders: list[Folder] = [] # все объекты обобщающих каталогов/папок
+    _files: list[File] = [] # все объекты файлов .md
+    _folders: list[Folder] = [] # все объекты обобщающих каталогов/папок
     get_snapshot_files_and_folders() # обновляю списки tensors, folders
 
-    _sort(files)
-    _sort(folders)
+    _sort(_files)
+    _sort(_folders)
 
-    words = Frame(files) # таблица данных
+    words = Frames(_files) # таблица данных
 
     print('---')
     print("""
-    tensors: list - список объектов, созданных по файлам .md
-    folders: list - список объектов, созданных по каталогам
-    words: FramesData - объект для анализа слов
+    _files: list - список объектов, созданных по файлам .md
+    _folders: list - список объектов, созданных по каталогам
+    words: Frames - объект для анализа слов в текстовых сообщениях
         .df: pd.DataFrame - таблица соответвия набору символов и python объектов
         .essences: pd.DataFrame - таблица сущностей и их объектов pyhton
     """)
