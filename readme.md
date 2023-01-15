@@ -1,3 +1,11 @@
+# Сценарий [dzmitry-dp/tensor: Establish an essences relationship in a text message](https://github.com/dzmitry-dp/tensor)
+
+![[Pasted image 20230115142356.png]]
+
+История понятия сущности начинается с трактатов Аристотеля. 
+
+__TestMessages - в данном случае набор текстовых файлов .md которые оформлены в стиле Markdown__
+
 # How it can be used
 
 ### Virtual environment
@@ -18,11 +26,4 @@ Activate virtual enviroment on Linux:
 
 >It's been great working together on your script. Could you share a short [review about our work](https://www.upwork.com/freelancers/~019b1ae0ab6a36cdf2)? Thanks for helping!
 
-## Сценарий [dzmitry-dp/tensor: Establish an essences relationship in a text message](https://github.com/dzmitry-dp/tensor)
-
-История понятия сущности начинается с трактатов Аристотеля. 
-
-__TestMessages - в данном случае набор текстовых файлов .md которые оформлены в стиле Markdown__
-
-### Запуск скрипта из каталога в котором находятся заметки
 
