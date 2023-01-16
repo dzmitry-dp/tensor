@@ -55,7 +55,7 @@ if __name__ == '__main__':
     _folders: list - список объектов, созданных по каталогам
     words: Frames - объект для анализа слов в текстовых сообщениях
         .df: pd.DataFrame - таблица соответвия набору символов и python объектов
-        .essences: pd.DataFrame - таблица сущностей и их объектов pyhton
+        .essences: pd.DataFrame - таблица связанных объектов pyhton
     """)
     print('---')
     

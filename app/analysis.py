@@ -19,8 +19,8 @@ class Frames:
         if self._df is None:
             print("""
             .df - таблица где строки - это набор символов str и соответствующий этому набору символов python объект. 
-            B каждой строке объекты из конкретного файла. 
-            Столбцы отражают количество появлений этого набора символов в различных файлах
+        B каждой строке объекты из конкретного файла. 
+        Столбцы отражают появление этого набора символов в других файлах
             """)
             self._df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in self.all_obj.items()])).fillna(0).T
         return self._df
@@ -29,7 +29,9 @@ class Frames:
     def essences(self) -> pd.DataFrame:
         if self._essences is None:
             print("""
-            .essences - таблица, где в каждой строке сущность
+            .essences - таблица, где в каждой строке связанные объекты.
+        Связь объектов - есть их наличие в одной строке. 
+        Объекты IntelligentObject были созданы по набору символов.
             """)
             self._essences = self._keep_the_same_io_in_column(
                 self._get_same_symbols_in_words(self.df)
@@ -37,8 +39,8 @@ class Frames:
         return self._essences
     
     def _get_same_symbols_in_words(self, df):
-        """Отслеживаю формы одного и того же слова. Если совпадает 80% символов, то ститаю что это одна сущность.
-        Возвращаю pd.DataFrame где строки - это набор символов, а столбцы уникальные объекты.
+        """Отслеживаю формы одного и того же слова.
+        Если совпадает 80% символов, то ститаю что это одна сущность.
         """
         def _save_one_of_two_obj():
             "Сохраняю в словарь всю строку таблицы df без 0"
@@ -91,7 +93,8 @@ class Frames:
 
     def _keep_the_same_io_in_column(self, df):
         '''
-        Проверяю колонки на наличие повторяющихся в них объектах
+        Проверяю колонки на наличие повторяющихся объектов
+        Возвращаю pd.DataFrame где строки - это набор символов, которому соответствует уникальные объекты.
         '''
         def _clearing_duplicates_objects_at_columns(df: pd.DataFrame) -> pd.DataFrame:
             # если есть строки с объектами, которые повторяются в колонке column

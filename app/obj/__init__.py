@@ -4,7 +4,7 @@ from app.obj.intelligent import IntelligentObject
 
 def get_all_obj(files: list) -> dict[str, list[IntelligentObject]]:
     print("""
-    Возвращаю множество интеллектуальных объектов из всех текстов.
+    # Возвращаю множество интеллектуальных объектов из текста.
     Соответствие 'набор_символов': [список_из_объектов] смотри в таблицах words
     """)
 
