@@ -1,10 +1,12 @@
-# Сценарий [dzmitry-dp/tensor: Establish an essences relationship in a text message](https://github.com/dzmitry-dp/tensor)
+# [Establish an essences relationship in a text message](https://github.com/dzmitry-dp/tensor)
 
 ![](https://github.com/dzmitry-dp/tensor/blob/master/TestMessages/Pasted%20image%2020230115142356.png?raw=true)
 
-История понятия сущности начинается с трактатов Аристотеля. 
+## Technical task
 
-__TestMessages - в данном случае набор текстовых файлов .md которые оформлены в стиле Markdown__
+Need a tool that will help navigate in text notes.
+
+__TestMessages - in this case, a set of text files that are designed in Markdown style and mimic a "note box"__
 
 # How it can be used
 
