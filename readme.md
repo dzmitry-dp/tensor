@@ -28,4 +28,6 @@ Activate virtual enviroment on Linux:
 
 >It's been great working together on your script. Could you share a short [review about our work](https://www.upwork.com/freelancers/~019b1ae0ab6a36cdf2)? Thanks for helping!
 
+![](https://github.com/dzmitry-dp/tensor/blob/master/TestMessages/2023-01-19%20183540.png?raw=true)
+
 
